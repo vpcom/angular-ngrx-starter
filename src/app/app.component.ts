@@ -6,5 +6,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'angular-ngrx-starter';
+  navigation = [
+    { link: 'welcome', label: 'Welcome' },
+    { link: 'books', label: 'Books' }
+  ];
 }
