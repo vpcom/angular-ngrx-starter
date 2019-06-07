@@ -2,11 +2,12 @@ import { BooksContainerComponent } from './books/books-container/books-container
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { WelcomeComponent } from './welcome/welcome.component';
+import * as translatedText from  './../assets/i18n/en.json';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'welcome', pathMatch: 'full' },
-  { path: 'welcome', component: WelcomeComponent },
-  { path: 'books', component: BooksContainerComponent }
+  { path: 'welcome', component: WelcomeComponent, data:  { title: translatedText['welcome.title'] } },
+  { path: 'books', component: BooksContainerComponent, data:  { title: translatedText['book.title'] } }
 ];
 
 @NgModule({

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import * as translatedText from  './../assets/i18n/en.json';
 
 @Component({
   selector: 'app-root',
@@ -7,7 +8,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   navigation = [
-    { link: 'welcome', label: 'Welcome' },
-    { link: 'books', label: 'Books' }
+    { link: 'welcome', label: translatedText['nav.welcome'] },
+    { link: 'books', label: translatedText['nav.book'] }
   ];
 }
