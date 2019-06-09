@@ -9,15 +9,15 @@ import { environment } from '../../environments/environment';
 import { routerReducer } from '@ngrx/router-store';
 import { storeFreeze } from 'ngrx-store-freeze';
 
-export interface State {
+export interface AppState {
 
 }
 
 // Added the routing Actions to the Actions map aimed at the store
-export const reducers: ActionReducerMap<State> = {
+export const reducers: ActionReducerMap<AppState> = {
   router: routerReducer
 };
 
 // Added storeFreeze to initial Schematic
-export const metaReducers: MetaReducer<State>[] =
+export const metaReducers: MetaReducer<AppState>[] =
   !environment.production ? [storeFreeze] : [];
