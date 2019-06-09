@@ -24,6 +24,7 @@ import { AppEffects } from './app.effects';
     BooksModule,
     StoreModule.forRoot(reducers, { metaReducers }),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
+    // Binding to allow the store to listen to Router's Actions
     StoreRouterConnectingModule.forRoot({stateKey:'router'}),
     EffectsModule.forRoot([AppEffects]),
   ],
