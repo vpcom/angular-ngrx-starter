@@ -3,12 +3,18 @@ import { CommonModule } from '@angular/common';
 
 import { BooksRoutingModule } from './books-routing.module';
 import { BooksContainerComponent } from './books-container/books-container.component';
+import { StoreModule } from '@ngrx/store';
+import * as fromBooks from './books.reducer';
+import { EffectsModule } from '@ngrx/effects';
+import { BooksEffects } from './books.effects';
 
 @NgModule({
   declarations: [BooksContainerComponent],
   imports: [
     CommonModule,
-    BooksRoutingModule
+    BooksRoutingModule,
+    StoreModule.forFeature('books', fromBooks.reducer),
+    EffectsModule.forFeature([BooksEffects])
   ]
 })
 export class BooksModule { }
