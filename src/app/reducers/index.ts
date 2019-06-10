@@ -14,7 +14,7 @@ export interface AppState {
 }
 
 // Added the routing Actions to the Actions map aimed at the store
-export const reducers: ActionReducerMap<AppState> = {
+export const appReducers: ActionReducerMap<AppState> = {
   router: routerReducer
 };
 

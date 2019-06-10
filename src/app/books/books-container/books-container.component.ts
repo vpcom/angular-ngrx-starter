@@ -1,4 +1,11 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Book } from '../books.model';
+import { Store, select } from '@ngrx/store';
+import { BookState } from '../store/books.reducer';
+import { selectBooksState } from '../store/books.selectors';
+import { Dictionary } from '@ngrx/entity';
+import { LoadBooks } from '../store/books.actions';
 
 @Component({
   selector: 'app-books-container',
@@ -8,9 +15,13 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 })
 export class BooksContainerComponent implements OnInit {
 
-  constructor() { }
+  books$: Observable<BookState>;
+
+  constructor(public store: Store<BookState>) { }
 
   ngOnInit() {
+    this.store.dispatch(new LoadBooks());
+    this.books$ = this.store.pipe(select(selectBooksState));
   }
 
 }
