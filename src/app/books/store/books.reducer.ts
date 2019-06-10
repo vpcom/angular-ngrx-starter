@@ -16,7 +16,9 @@ export function reducer(state = initialState, action: BooksActions): BookState {
   switch (action.type) {
 
     case BookActionTypes.LoadBooks:
-
+      // TODO should be called before loading the data.
+      console.log("reducer")
+      // TODO set loading = true;
       return state;
 
     case BookActionTypes.LoadBooksSuccess:

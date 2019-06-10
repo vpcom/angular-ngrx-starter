@@ -20,7 +20,9 @@ export class BooksContainerComponent implements OnInit {
   constructor(public store: Store<BookState>) { }
 
   ngOnInit() {
-    this.store.dispatch(new LoadBooks());
+    // Here no need to do this.store.dispatch(new LoadBooks()) because the loading effect
+    // ofType(BookActionTypes.LoadBooks) has a startWith operator.
+    // The selection occurs when the effect emits the action LoadBooksSuccess().
     this.books$ = this.store.pipe(select(selectBooksState));
   }
 

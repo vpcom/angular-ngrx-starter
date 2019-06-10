@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
-import { catchError, map, concatMap, delay, switchMap, tap } from 'rxjs/operators';
+import { catchError, map, concatMap, delay, switchMap, tap, startWith } from 'rxjs/operators';
 import { EMPTY, of } from 'rxjs';
-import { LoadBooksFailure, LoadBooksSuccess, BookActionTypes, BooksActions } from './books.actions';
+import { LoadBooksFailure, LoadBooksSuccess, BookActionTypes, BooksActions, LoadBooks } from './books.actions';
 import { BooksService } from '../services/books.service';
 import { Store } from '@ngrx/store';
 import { BookState } from './books.reducer';
@@ -18,6 +18,8 @@ export class BooksEffects {
   @Effect()
   loadBooks$ = this.actions$.pipe(
     ofType(BookActionTypes.LoadBooks),
+    // The startWith allows to start the stream from here and this effects doesn't need a value.
+    startWith(null),
     switchMap(() =>
       // Calls the service and triggers the response storage
       this.booksService.getAllBooks().pipe(
