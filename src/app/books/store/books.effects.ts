@@ -18,7 +18,7 @@ export class BooksEffects {
   @Effect()
   loadBooks$ = this.actions$.pipe(
     ofType(BookActionTypes.LoadBooks),
-    // The startWith allows to start the stream from here and this effects doesn't need a value.
+    // The startWith operator starts the stream imediately from this point
     startWith(null),
     switchMap(() =>
       // Calls the service and triggers the response storage

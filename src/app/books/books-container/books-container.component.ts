@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { Book } from '../books.model';
 import { Store, select } from '@ngrx/store';
 import { BookState } from '../store/books.reducer';
-import { selectBooksState } from '../store/books.selectors';
+import { selectBooksState, selectBooksArray } from '../store/books.selectors';
 import { Dictionary } from '@ngrx/entity';
 import { LoadBooks } from '../store/books.actions';
 
@@ -15,15 +15,15 @@ import { LoadBooks } from '../store/books.actions';
 })
 export class BooksContainerComponent implements OnInit {
 
-  books$: Observable<BookState>;
+  books$: Observable<Book[]>;
 
   constructor(public store: Store<BookState>) { }
 
   ngOnInit() {
-    // Here no need to do this.store.dispatch(new LoadBooks()) because the loading effect
-    // ofType(BookActionTypes.LoadBooks) has a startWith operator.
-    // The selection occurs when the effect emits the action LoadBooksSuccess().
-    this.books$ = this.store.pipe(select(selectBooksState));
+    // No need to do "this.store.dispatch(new LoadBooks());"
+    // because the effect ofType(BookActionTypes.LoadBooks) has a startWith operator.
+    // The selection occurs immediately after.
+    this.books$ = this.store.pipe(select(selectBooksArray));
   }
 
 }

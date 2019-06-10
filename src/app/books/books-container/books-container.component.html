@@ -1,4 +1,4 @@
-Books state:
-<pre>
-  {{ books$ | async | json }}
-</pre>
+Books:
+<div *ngFor="let book of books$ | async">
+  - <span>{{ book.name }}</span>
+</div>
