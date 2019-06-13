@@ -1,0 +1,12 @@
+[
+  {
+    "id": 1,
+    "name": "Big book 1",
+    "Summary": "Once upon a time in Big Book 1..."
+  },
+  {
+    "id": 2,
+    "name": "Big book 2",
+    "Summary": "Once upon a time in Big Book 2..."
+  }
+]

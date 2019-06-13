@@ -1,0 +1,14 @@
+[
+  {
+    "id": 1,
+    "name": "Author 1",
+    "bookIds": [ 1, 2 ],
+    "biography": "Description of the life of Author 1..."
+  },
+  {
+    "id": 2,
+    "name": "Author 2",
+    "bookIds": [ 3, 4 ],
+    "biography": "Description of the life of Author 2..."
+  }
+]
