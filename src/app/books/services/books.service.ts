@@ -1,25 +1,17 @@
 import { Injectable } from '@angular/core';
 import { Book } from '../books.model';
 import { Observable, of } from 'rxjs';
+import { LocalStorageService } from 'src/app/local-storage/local-storage.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BooksService {
 
-  constructor() { }
+  constructor(private localStorageService: LocalStorageService) { }
 
   public getAllBooks(): Observable<Book[]> {
-    console.log('getAllBooks called');
-    return of([
-      {
-        id: '1',
-        name: 'Big book 1'
-      },
-      {
-        id: '2',
-        name: 'Big book 2',
-      }
-    ]);
+    console.log('Fake HTTP request getAllBooks called');
+    return of(this.localStorageService.getItem('books'));
   }
 }

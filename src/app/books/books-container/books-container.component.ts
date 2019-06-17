@@ -1,10 +1,11 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, combineLatest } from 'rxjs';
 import { Book } from '../books.model';
 import { Store, select } from '@ngrx/store';
 import { BookState } from '../store/books.reducer';
-import { selectBooksState, selectBooksArray } from '../store/books.selectors';
-import { Dictionary } from '@ngrx/entity';
+import { selectBooksArray } from '../store/books.selectors';
+import { LocalStorageService } from 'src/app/local-storage/local-storage.service';
+import { selectLocalStorageIsInit } from 'src/app/reducers';
 import { LoadBooks } from '../store/books.actions';
 
 @Component({
@@ -14,16 +15,25 @@ import { LoadBooks } from '../store/books.actions';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class BooksContainerComponent implements OnInit {
+  books$: BehaviorSubject<Book[]> = new BehaviorSubject([]);
 
-  books$: Observable<Book[]>;
-
-  constructor(public store: Store<BookState>) { }
+  constructor(public store: Store<BookState>,
+              public localStorageService: LocalStorageService) { }
 
   ngOnInit() {
-    // No need to do "this.store.dispatch(new LoadBooks());"
-    // because the effect ofType(BookActionTypes.LoadBooks) has a startWith operator.
-    // The selection occurs immediately after.
-    this.books$ = this.store.pipe(select(selectBooksArray));
+    // Figuring out if and how the books can be loaded
+    const alreadyStoredBookData$ = this.store.pipe(select(selectBooksArray));
+    const isLocalStorageReady$ = this.store.pipe(select(selectLocalStorageIsInit));
+    combineLatest(alreadyStoredBookData$, isLocalStorageReady$)
+      .subscribe(([dataAlreadyHere, isLocalStorageReady]) => {
+        if (dataAlreadyHere.length === 0 && isLocalStorageReady) {
+          this.store.dispatch(new LoadBooks());
+          this.store.pipe(select(selectBooksArray)).subscribe(books => this.books$.next(books));
+        } else {
+          this.store.pipe(select(selectBooksArray)).subscribe(books => this.books$.next(books));
+        }
+      }
+    );
   }
 
 }
