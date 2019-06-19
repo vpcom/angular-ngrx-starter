@@ -12,3 +12,8 @@ Angular 8
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
+### Versioning
+https://semver.org/
+
+### Commit convention
+https://www.conventionalcommits.org/en/v1.0.0-beta.4/
