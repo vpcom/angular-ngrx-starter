@@ -1,5 +1,5 @@
 <ng-container *ngFor="let navItem of navigation">
-  <a [routerLink]="navItem.link">{{ navItem.label }}</a> |
+  <button mat-button [routerLink]="navItem.link" routerLinkActive="active">{{ navItem.label }}</button>
 </ng-container>
 <hr>
 

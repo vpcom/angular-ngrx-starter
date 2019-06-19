@@ -15,7 +15,7 @@ export class BooksService {
    * Loads JSON data representing a list of all books including minimal data.
    */
   public getAllBooks(): Observable<Book[]> {
-    if (environment.trace) {
+    if (environment.debugMode) {
       console.log('HTTP request: getAllBooks');
     }
     
