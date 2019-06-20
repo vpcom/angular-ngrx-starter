@@ -1,5 +1,6 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+
+
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
@@ -10,32 +11,16 @@ import { switchMap } from 'rxjs/operators';
   styleUrls: ['./book-details.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class BookDetailsComponent {
-  bookForm = this.fb.group({
-    title: [null, Validators.required],
-    author: [null, Validators.required],
-    summary: [null, Validators.required],
-  });
-
-  hasUnitNumber = false;
-
-  authors = [
-    {name: 'Author 1', abbreviation: 'A1'},
-    {name: 'Author 2', abbreviation: 'A2'}
-  ];
+export class BookDetailsComponent implements OnInit {
 
   bookId$: Observable<number>;
 
-  constructor(private fb: FormBuilder,
-              private route: ActivatedRoute,) {}
+  constructor(private route: ActivatedRoute) {}
 
   ngOnInit() {
     this.bookId$ = this.route.paramMap.pipe(
       switchMap((params: ParamMap) => of(parseInt(params.get('id'), 10)))
     );
   }
-
-  onSubmit() {
-    alert('Thanks!');
-  }
+  
 }

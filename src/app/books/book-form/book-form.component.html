@@ -1,0 +1,58 @@
+
+Book ID: {{ bookId$ | async }}<br><br>
+
+<form [formGroup]="bookForm" novalidate (ngSubmit)="onSubmit()">
+  <mat-card class="full-width">
+    <mat-card-header>
+      <mat-card-title>Book title</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Title *" formControlName="title">
+            <mat-error *ngIf="bookForm.controls['title'].hasError('required')">
+                Title is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <mat-select placeholder="Author *" formControlName="author">
+              <mat-option *ngFor="let author of authors" [value]="author.abbreviation">
+                {{ author.name }}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="bookForm.controls['author'].hasError('required')">
+              Author is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+            Photo<br><br>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <textarea matInput placeholder="Summary" formControlName="summary"></textarea>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          *: required
+        </div>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" type="submit">Save</button>
+      <button mat-button routerLink="../" type="button">Cancel</button>
+      <button mat-button (click)="onDelete()" type="button">Delete</button>
+    </mat-card-actions>
+  </mat-card>
+</form>

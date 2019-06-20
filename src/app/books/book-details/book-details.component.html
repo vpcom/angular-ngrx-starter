@@ -1,54 +1,19 @@
 
 Book ID: {{ bookId$ | async }}<br><br>
 
-<form [formGroup]="bookForm" novalidate (ngSubmit)="onSubmit()">
-  <mat-card class="full-width">
-    <mat-card-header>
-      <mat-card-title>Book title</mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-      <div class="row">
-        <div class="col">
-          <mat-form-field class="full-width">
-            <input matInput placeholder="Title" formControlName="title">
-            <mat-error *ngIf="bookForm.controls['title'].hasError('required')">
-                Title is <strong>required</strong>
-            </mat-error>
-          </mat-form-field>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col">
-          <mat-form-field class="full-width">
-            <mat-select placeholder="Author" formControlName="author">
-              <mat-option *ngFor="let author of authors" [value]="author.abbreviation">
-                {{ author.name }}
-              </mat-option>
-            </mat-select>
-            <mat-error *ngIf="bookForm.controls['author'].hasError('required')">
-              Author is <strong>required</strong>
-            </mat-error>
-          </mat-form-field>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col">
-          Book picture
-        </div>
-      </div>
-      <div class="row">
-        <div class="col">
-          <mat-form-field class="full-width">
-            <textarea matInput placeholder="Summary" formControlName="summary"></textarea>
-            <mat-error *ngIf="bookForm.controls['summary'].hasError('required')">
-              Summary is <strong>required</strong>
-            </mat-error>
-          </mat-form-field>
-        </div>
-      </div>
-    </mat-card-content>
-    <mat-card-actions>
-      <button mat-raised-button color="primary" type="submit">Submit</button>
-    </mat-card-actions>
-  </mat-card>
-</form>
+<mat-card class="example-card">
+  <mat-card-header>
+    <mat-card-title>Book title</mat-card-title>
+    <mat-card-subtitle>Author name</mat-card-subtitle>
+  </mat-card-header>
+  Photo<br><br>
+  <mat-card-content>
+    <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    </p>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-raised-button color="primary" routerLink="edit">Edit</button>
+    <button mat-button routerLink="../">Return to list</button>
+  </mat-card-actions>
+</mat-card>

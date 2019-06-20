@@ -12,11 +12,13 @@ import { BooksContainerComponent } from './books-container/books-container.compo
 import * as fromBooks from './store/books.reducer';
 import { BooksEffects } from './store/books.effects';
 import { BookDetailsComponent } from './book-details/book-details.component';
+import { BookFormComponent } from './book-form/book-form.component';
 
 @NgModule({
   declarations: [
     BooksContainerComponent,
-    BookDetailsComponent
+    BookDetailsComponent,
+    BookFormComponent
   ],
   imports: [
     CommonModule,
