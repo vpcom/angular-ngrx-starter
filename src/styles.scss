@@ -1,9 +1,11 @@
 
 // Our default standard theme
 @import './src/app-theme.scss';
+@import './src/app-custom-theme.scss';
 @import './src/app/app.component.scss';
 
 .app-theme {
   @include angular-material-theme($app-theme);
+  @include angular-material-custom-theme($app-theme);
   @include app-component-theme($app-theme);
 }

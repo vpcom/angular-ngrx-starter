@@ -1,0 +1,7 @@
+@import '~@angular/material/theming';
+
+@mixin angular-material-custom-theme($theme) {
+  mat-card.list-item {
+    margin: 5px 0 5px 0;
+  }
+}

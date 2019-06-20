@@ -1,4 +1,4 @@
-Books:
+
 <div *ngFor="let book of books$ | async">
-  - <span>{{ book.name }}</span>
+  <mat-card class="list-item">{{ book.name }}</mat-card>
 </div>
