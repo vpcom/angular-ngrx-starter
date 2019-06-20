@@ -5,9 +5,19 @@ import { WelcomeComponent } from './welcome/welcome.component';
 import * as translatedText from  './../assets/i18n/en.json';
 
 export const routes: Routes = [
-  { path: '', redirectTo: 'welcome', pathMatch: 'full' },
-  { path: 'welcome', component: WelcomeComponent, data:  { title: translatedText['welcome.title'] } },
-  { path: 'books', component: BooksContainerComponent, data:  { title: translatedText['book.title'] } }
+  {
+    path: '',
+    redirectTo: 'welcome',
+    pathMatch: 'full'
+  },
+  {
+    path: 'welcome',
+    component: WelcomeComponent,
+    data:  {title: translatedText['welcome.title'] } },
+  {
+    path: 'books', 
+    loadChildren: () => import('./books/books.module').then(mod => mod.BooksModule)
+ }
 ];
 
 @NgModule({

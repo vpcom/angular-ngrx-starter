@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
@@ -10,13 +11,17 @@ import { BooksRoutingModule } from './books-routing.module';
 import { BooksContainerComponent } from './books-container/books-container.component';
 import * as fromBooks from './store/books.reducer';
 import { BooksEffects } from './store/books.effects';
+import { BookDetailsComponent } from './book-details/book-details.component';
 
 @NgModule({
-  declarations: [BooksContainerComponent],
+  declarations: [
+    BooksContainerComponent,
+    BookDetailsComponent
+  ],
   imports: [
     CommonModule,
+    ReactiveFormsModule,
     BooksRoutingModule,
-
     MaterialModule,
     
     StoreModule.forFeature('books', fromBooks.reducer),

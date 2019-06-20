@@ -1,4 +1,4 @@
 
 <div *ngFor="let book of books$ | async">
-  <mat-card class="list-item">{{ book.name }}</mat-card>
+  <a routerLink="{{ book.id }}"><mat-card class="list-item">{{ book.name }}</mat-card></a>
 </div>
