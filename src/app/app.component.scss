@@ -10,25 +10,34 @@
   }
 
   @media (max-width: map-get($breakpoints, sm)) {
-    #content-container {
-      padding: 20px 10px 10px 10px;
+    .content-wrapper {
+      padding: 0px 10px 10px 10px;
+    }
+    .main-content {
+      padding-top: 20px;
     }
   }
   @media (min-width: map-get($breakpoints, sm)) {
-    #content-container {
+    .content-wrapper {
       width: 550px;
       margin: 0 auto;
     }
   }
   @media (min-width: map-get($breakpoints, sm)) and
         (max-width: map-get($breakpoints, lg)) {
-    #content-container {
-      padding: 40px 0px 0px 0px;
+    .content-wrapper {
+      padding: 0px 0px 0px 0px;
+    }
+    .main-content {
+      padding-top: 40px;
     }
   }
   @media (min-width: map-get($breakpoints, lg)) {
-    #content-container {
-      padding: 60px 0px 0px 0px;
+    .content-wrapper {
+      padding: 0px 0px 0px 0px;
+    }
+    .main-content {
+      padding-top: 60px;
     }
   }
   
