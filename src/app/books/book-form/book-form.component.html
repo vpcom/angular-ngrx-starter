@@ -3,9 +3,9 @@ Book ID: {{ bookId$ | async }}<br><br>
 
 <form [formGroup]="bookForm" novalidate (ngSubmit)="onSubmit()">
   <mat-card>
-    <mat-card-header>
+    <div class="row">
       <mat-card-title>Book title</mat-card-title>
-    </mat-card-header>
+    </div>
     <mat-card-content>
       <div class="row">
         <div class="col">
@@ -49,10 +49,10 @@ Book ID: {{ bookId$ | async }}<br><br>
         </div>
       </div>
     </mat-card-content>
-    <mat-card-actions>
+    <div class="card-actions">
       <button mat-raised-button color="primary" type="submit">Save</button>
       <button mat-button routerLink="../" type="button">Cancel</button>
       <button mat-button (click)="onDelete()" type="button">Delete</button>
-    </mat-card-actions>
+    </div>
   </mat-card>
 </form>

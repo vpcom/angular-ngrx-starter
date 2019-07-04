@@ -1,11 +1,12 @@
 
 <div class="content-wrapper">
-  <ng-container *ngFor="let navItem of navigation">
-    <button mat-button [routerLink]="navItem.link" routerLinkActive="active">{{ navItem.label }}</button>
-  </ng-container>
-</div>
-<hr>
+  <div class="menu">
+    <ng-container *ngFor="let navItem of navigation">
+      <button mat-button [routerLink]="navItem.link" routerLinkActive="active" class="menu-item">{{ navItem.label }}</button>
+    </ng-container>
+  </div>
 
-<div class="content-wrapper main-content">
-  <router-outlet></router-outlet>
+  <div class="main-content">
+    <router-outlet></router-outlet>
+  </div>
 </div>

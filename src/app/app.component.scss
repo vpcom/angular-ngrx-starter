@@ -1,5 +1,5 @@
 @import '~@angular/material/theming';
-@import './src/variables.scss';
+@import './src/styles/variables.scss';
 
 @mixin app-component-theme($theme) {
   $accent: map-get($theme, accent);
@@ -9,36 +9,67 @@
     background-color: mat-color($accent) !important;
   }
 
-  @media (max-width: map-get($breakpoints, sm)) {
-    .content-wrapper {
-      padding: 0px 10px 10px 10px;
+  .menu-item {
+    margin: 0px 5px 0px 5px;
+
+    &:first-child {
+      margin: 0px 5px 0px 0px;
     }
-    .main-content {
-      padding-top: 20px;
+    &:last-child {
+      margin: 0px 0px 0px 5px;
     }
   }
+
+  // Defaults for top blocs
+  .content-wrapper {
+    margin: 0px 0px 0px 0px;
+    padding: 0px 0px 0px 0px;
+  }
+  .menu {
+    margin: 0px 0px 0px 0px;
+    padding: 0px 0px 0px 0px;
+  }  
+  .main-content {
+    margin: 0px 0px 0px 0px;
+    padding: 0px 0px 0px 0px;
+  }
+
+  // Very small screen (mobile)
+  @media (max-width: map-get($breakpoints, sm)) {
+    .menu {
+      padding: 5px 5px 5px 5px;
+    }  
+    .main-content {
+      padding: 5px 5px 5px 5px;
+    }
+  }
+
+  // Medium and large screens (centering)
   @media (min-width: map-get($breakpoints, sm)) {
     .content-wrapper {
       width: 550px;
       margin: 0 auto;
     }
   }
+
+  // Medium screens
   @media (min-width: map-get($breakpoints, sm)) and
-        (max-width: map-get($breakpoints, lg)) {
-    .content-wrapper {
-      padding: 0px 0px 0px 0px;
-    }
+         (max-width: map-get($breakpoints, lg)) {
+    .menu {
+      padding: 10px 10px 10px 10px;
+    }  
     .main-content {
-      padding-top: 40px;
+      padding: 40px 10px 10px 10px;
     }
   }
+
+  // Large screens
   @media (min-width: map-get($breakpoints, lg)) {
-    .content-wrapper {
-      padding: 0px 0px 0px 0px;
-    }
+    .menu {
+      padding: 20px 20px 20px 20px;
+    }  
     .main-content {
-      padding-top: 60px;
+      padding: 60px 20px 20px 20px;
     }
   }
-  
 }

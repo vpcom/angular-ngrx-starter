@@ -1,8 +1,7 @@
-
 // Our default standard theme
-@import './src/app-theme.scss';
-@import './src/app-custom-theme.scss';
 @import './src/app/app.component.scss';
+@import './src/styles/app-theme.scss';
+@import './src/styles/app-custom-theme.scss';
 
 .app-theme {
   @include angular-material-theme($app-theme);
