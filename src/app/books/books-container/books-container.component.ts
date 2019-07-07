@@ -21,12 +21,12 @@ export class BooksContainerComponent implements OnInit {
               public localStorageService: LocalStorageService) { }
 
   ngOnInit() {
-    // Figuring out if and how the books can be loaded
-    const alreadyStoredBookData$ = this.store.pipe(select(selectBooksArray));
+    // Loading books from store and initialize the books store data if needed.
+    const storedBookData$ = this.store.pipe(select(selectBooksArray));
     const isLocalStorageReady$ = this.store.pipe(select(selectLocalStorageIsInit));
-    combineLatest(alreadyStoredBookData$, isLocalStorageReady$)
-      .subscribe(([dataAlreadyHere, isLocalStorageReady]) => {
-        if (dataAlreadyHere.length === 0 && isLocalStorageReady) {
+    combineLatest(storedBookData$, isLocalStorageReady$)
+      .subscribe(([storedBookData, isLocalStorageReady]) => {
+        if (storedBookData.length === 0 && isLocalStorageReady) {
           this.store.dispatch(new LoadBooks());
           this.store.pipe(select(selectBooksArray)).subscribe(books => this.books$.next(books));
         } else {
