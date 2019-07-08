@@ -21,13 +21,9 @@ export class BookDetailsComponent implements OnInit {
 
   currentBook$: Observable<Book> = this.store.pipe(select(selectCurrentBook));
 
-  constructor(private route: ActivatedRoute,
-              public store: Store<BookState>) {}
+  constructor(public store: Store<BookState>) {}
 
   ngOnInit() {
-    this.bookId$ = this.route.paramMap.pipe(
-      switchMap((params: ParamMap) => of(parseInt(params.get('id'), 10)))
-    );
   }
   
 }

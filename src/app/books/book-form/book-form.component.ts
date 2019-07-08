@@ -1,8 +1,6 @@
-import { Component, ChangeDetectionStrategy, ElementRef } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { Observable, of, fromEvent, Subject } from 'rxjs';
-import { ActivatedRoute, ParamMap } from '@angular/router';
-import { switchMap } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-book-form',
@@ -26,13 +24,9 @@ export class BookFormComponent {
 
   bookId$: Observable<number>;
 
-  constructor(private fb: FormBuilder,
-              private route: ActivatedRoute) {}
+  constructor(private fb: FormBuilder) {}
 
   ngOnInit() {
-    this.bookId$ = this.route.paramMap.pipe(
-      switchMap((params: ParamMap) => of(parseInt(params.get('id'), 10)))
-    );
   }
 
   onSubmit(e) {

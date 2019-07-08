@@ -5,10 +5,10 @@ import { selectRouterState } from 'src/app/reducers';
 
 export const selectBooksState = createFeatureSelector<BookState>("books");
 
-export const selectBooksEntities = createSelector(
-  selectBooksState,
-  (bookState: BookState) => bookState.entities
-);
+  export const selectBooksEntities = createSelector(
+    selectBooksState,
+    (bookState: BookState) => bookState.entities
+  );
 
 export const selectBooksArray = createSelector(
   selectBooksEntities,
@@ -18,5 +18,15 @@ export const selectBooksArray = createSelector(
 export const selectCurrentBook = createSelector(
   selectBooksEntities,
   selectRouterState,
-  (entities, params) => params && entities[params.state.params.id]
+  (entities, params) => params  && entities[params.state.params.id]
+);
+
+export const selectUrlBookIdExists = createSelector(
+  selectRouterState,
+  (params) => params.state.params.id
+);
+
+export const selectUrlBookEdit = createSelector(
+  selectRouterState,
+  (params) => params.state.url.endsWith('edit')
 );

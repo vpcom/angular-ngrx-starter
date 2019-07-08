@@ -4,15 +4,12 @@ import { catchError, map, switchMap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { LoadBooksFailure, LoadBooksSuccess, BookActionTypes, BooksActions } from './books.actions';
 import { BooksService } from '../services/books.service';
-import { Store } from '@ngrx/store';
-import { BookState } from './books.reducer';
 
 @Injectable()
 export class BooksEffects {
 
   constructor(private actions$: Actions<BooksActions>,
-              private booksService: BooksService,
-              public store: Store<BookState>) {}
+              private booksService: BooksService) {}
 
   @Effect()
   loadBooks$ = this.actions$.pipe(

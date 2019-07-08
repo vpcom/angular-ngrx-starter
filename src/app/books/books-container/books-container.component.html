@@ -1,4 +1,10 @@
 
-<div *ngFor="let book of books$ | async">
-  <a routerLink="{{ book.id }}"><mat-card class="list-item">{{ book.name }}</mat-card></a>
+<div  *ngIf="!(isBookSelected$ | async)">
+  <div *ngFor="let book of books$ | async">
+    <a routerLink="{{ book.id }}"><mat-card class="list-item">{{ book.name }}</mat-card></a>
+  </div>
 </div>
+
+<app-book-details *ngIf="(isBookSelected$ | async) && !(isBookEdited$ | async)"></app-book-details>
+
+<app-book-form *ngIf="isBookEdited$ | async"></app-book-form>

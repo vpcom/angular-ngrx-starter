@@ -1,12 +1,11 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { BehaviorSubject, combineLatest } from 'rxjs';
+import { BehaviorSubject, combineLatest, Observable } from 'rxjs';
 import { Book } from '../books.model';
 import { Store, select } from '@ngrx/store';
-import { BookState } from '../store/books.reducer';
-import { selectBooksArray } from '../store/books.selectors';
-import { LocalStorageService } from 'src/app/local-storage/local-storage.service';
+import { selectBooksArray, selectCurrentBook, selectUrlBookIdExists, selectUrlBookEdit } from '../store/books.selectors';
 import { selectLocalStorageIsInit } from 'src/app/reducers';
 import { LoadBooks } from '../store/books.actions';
+import { AppState } from '../../reducers/index';
 
 @Component({
   selector: 'app-books-container',
@@ -17,8 +16,13 @@ import { LoadBooks } from '../store/books.actions';
 export class BooksContainerComponent implements OnInit {
   books$: BehaviorSubject<Book[]> = new BehaviorSubject([]);
 
-  constructor(public store: Store<BookState>,
-              public localStorageService: LocalStorageService) { }
+  isEditing: boolean;
+  bookSelected: boolean;
+  currentBook$: Observable<Book> = this.store.pipe(select(selectCurrentBook));
+  isBookSelected$: Observable<any> = this.store.pipe(select(selectUrlBookIdExists));
+  isBookEdited$: Observable<any> = this.store.pipe(select(selectUrlBookEdit));
+
+  constructor(public store: Store<AppState>) { }
 
   ngOnInit() {
     // Loading books from store and initialize the books store data if needed.

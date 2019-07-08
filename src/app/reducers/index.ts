@@ -27,7 +27,6 @@ export const metaReducers: MetaReducer<AppState>[] =
   !environment.production ? [storeFreeze] : [];
 
 export const selectLocalStorageState = createFeatureSelector<fromLocalStorage.LocalStorageState>("localStorage");
-
 export const selectLocalStorageIsInit = createSelector(
   selectLocalStorageState,
   (localStorageState: fromLocalStorage.LocalStorageState) => localStorageState.isInit
