@@ -15,7 +15,7 @@ import { Book } from '../books.model';
 })
 export class BookDetailsComponent implements OnInit {
 
-  @Input() currentBook: Book;
+  @Input() book: Book;
 
   bookId$: Observable<number>;
   book$: Observable<Book>;

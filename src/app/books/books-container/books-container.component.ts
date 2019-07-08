@@ -18,9 +18,10 @@ export class BooksContainerComponent implements OnInit {
 
   isEditing: boolean;
   bookSelected: boolean;
-  currentBook$: Observable<Book> = this.store.pipe(select(selectCurrentBook));
   isBookSelected$: Observable<any> = this.store.pipe(select(selectUrlBookIdExists));
   isBookEdited$: Observable<any> = this.store.pipe(select(selectUrlBookEdit));
+  // TODO, add the Author value to the current book object
+  currentBook$: Observable<Book> = this.store.pipe(select(selectCurrentBook));
 
   constructor(public store: Store<AppState>) { }
 

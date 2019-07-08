@@ -1,6 +1,7 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
+import { Book } from '../books.model';
 
 @Component({
   selector: 'app-book-form',
@@ -9,6 +10,9 @@ import { Observable } from 'rxjs';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class BookFormComponent {
+
+  @Input() book: Book;
+
   bookForm = this.fb.group({
     title: [null, Validators.required],
     author: [null, Validators.required],
@@ -27,6 +31,9 @@ export class BookFormComponent {
   constructor(private fb: FormBuilder) {}
 
   ngOnInit() {
+    console.log(this.book);
+    // TODO type don't match at the moment 
+    // this.bookForm.setValue(this.book);
   }
 
   onSubmit(e) {
