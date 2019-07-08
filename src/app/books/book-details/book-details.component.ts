@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
 import { Observable, of, BehaviorSubject } from 'rxjs';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
@@ -15,11 +15,11 @@ import { Book } from '../books.model';
 })
 export class BookDetailsComponent implements OnInit {
 
+  @Input() currentBook: Book;
+
   bookId$: Observable<number>;
   book$: Observable<Book>;
   books$: BehaviorSubject<Book[]> = new BehaviorSubject([]);
-
-  currentBook$: Observable<Book> = this.store.pipe(select(selectCurrentBook));
 
   constructor(public store: Store<BookState>) {}
 

@@ -27,7 +27,7 @@ export class LocalStorageService {
    * Initial load of the fake HTTP resources
    */
   public init(): Observable<any> {
-    //localStorage.clear(); // TODO debug only
+    // localStorage.clear(); // TODO debug only
 
     const fileContents$ = from(this.fileList).pipe(
       tap(fileName => console.log('loading file: ' + fileName)),

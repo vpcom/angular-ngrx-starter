@@ -1,26 +1,26 @@
 [
   {
     "id": 1,
-    "name": "Big book 1",
+    "title": "Big book 1",
     "authorId": 1, 
-    "Summary": "Once upon a time in Big Book 1..."
+    "summary": "Once upon a time in Big Book 1..."
   },
   {
     "id": 2,
-    "name": "Big book 2",
+    "title": "Big book 2",
     "authorId": 1, 
-    "Summary": "Once upon a time in Big Book 2..."
+    "summary": "Once upon a time in Big Book 2..."
   },
   {
     "id": 3,
-    "name": "Small book 1",
+    "title": "Small book 1",
     "authorId": 2, 
-    "Summary": "Once upon a time in Small Book 1..."
+    "summary": "Once upon a time in Small Book 1..."
   },
   {
     "id": 4,
-    "name": "Small book 2",
+    "title": "Small book 2",
     "authorId": 2, 
-    "Summary": "Once upon a time in Small Book 2..."
+    "summary": "Once upon a time in Small Book 2..."
   }
 ]

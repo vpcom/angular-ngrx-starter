@@ -5,6 +5,8 @@
   </div>
 </div>
 
-<app-book-details *ngIf="(isBookSelected$ | async) && !(isBookEdited$ | async)"></app-book-details>
+<app-book-details *ngIf="(isBookSelected$ | async) && !(isBookEdited$ | async)"
+ [currentBook]="currentBook$ | async">
+</app-book-details>
 
 <app-book-form *ngIf="isBookEdited$ | async"></app-book-form>
