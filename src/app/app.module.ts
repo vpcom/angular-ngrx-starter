@@ -20,6 +20,7 @@ import { WelcomeComponent } from './welcome/welcome.component';
 import { appReducers, metaReducers } from './reducers';
 import { AppEffects } from './app.effects';
 import { LocalStorageEffects } from './local-storage/local-storage.effects';
+import { CustomSerializer } from './router/custom-serializer';
 
 @NgModule({
   declarations: [
@@ -38,8 +39,10 @@ import { LocalStorageEffects } from './local-storage/local-storage.effects';
 
     StoreModule.forRoot(appReducers, { metaReducers }),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
-    // Binding to allow the store to listen to Router's Actions
-    StoreRouterConnectingModule.forRoot({stateKey:'router'}),
+    // Binding to allow the store to listen to Router's Actions and format the router state
+    StoreRouterConnectingModule.forRoot({
+      stateKey:'router',
+      serializer: CustomSerializer}),
     EffectsModule.forRoot([AppEffects, LocalStorageEffects]),
   ],
   providers: [],

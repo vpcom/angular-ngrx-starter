@@ -9,7 +9,7 @@ import { environment } from '../../environments/environment';
 import { routerReducer, RouterReducerState } from '@ngrx/router-store';
 import { storeFreeze } from 'ngrx-store-freeze';
 import * as fromLocalStorage from '../local-storage/local-storage.reducer';
-import { RouterStateUrl } from '../router.state';
+import { RouterStateUrl } from '../router/router.state';
 
 export interface AppState {
   router: RouterReducerState<RouterStateUrl>;
