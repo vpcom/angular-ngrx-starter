@@ -6,6 +6,7 @@ import { selectBooksArray, selectCurrentBook, selectUrlBookIdExists, selectUrlBo
 import { selectLocalStorageIsInit } from 'src/app/reducers';
 import { LoadBooks } from '../store/books.actions';
 import { AppState } from '../../reducers/index';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-books-container',
@@ -23,7 +24,8 @@ export class BooksContainerComponent implements OnInit {
   // TODO, add the Author value to the current book object
   currentBook$: Observable<Book> = this.store.pipe(select(selectCurrentBook));
 
-  constructor(public store: Store<AppState>) { }
+  constructor(public store: Store<AppState>,
+              private router: Router) { }
 
   ngOnInit() {
     // Loading books from store and initialize the books store data if needed.
@@ -39,6 +41,11 @@ export class BooksContainerComponent implements OnInit {
         }
       }
     );
+  }
+
+  public onSelect(book: Book) {
+    console.log(book);
+    this.router.navigate(['books/' + book.id]);
   }
 
 }
