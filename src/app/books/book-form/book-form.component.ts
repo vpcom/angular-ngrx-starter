@@ -32,8 +32,7 @@ export class BookFormComponent {
 
   ngOnInit() {
     console.log(this.book);
-    // TODO type don't match at the moment 
-    // this.bookForm.setValue(this.book);
+    this.bookForm.patchValue(this.book);
   }
 
   onSubmit(e) {

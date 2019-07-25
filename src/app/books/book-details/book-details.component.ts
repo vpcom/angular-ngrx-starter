@@ -1,9 +1,6 @@
 import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
-import { Observable, of, BehaviorSubject } from 'rxjs';
-import { ActivatedRoute, ParamMap } from '@angular/router';
-import { switchMap } from 'rxjs/operators';
-import { select, Store } from '@ngrx/store';
-import { selectBooksArray, selectCurrentBook } from '../store/books.selectors';
+import { Observable, BehaviorSubject } from 'rxjs';
+import { Store } from '@ngrx/store';
 import { BookState } from '../store/books.reducer';
 import { Book } from '../books.model';
 

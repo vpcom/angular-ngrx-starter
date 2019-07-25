@@ -1,5 +1,5 @@
 
-Book ID: {{ bookId$ | async }}<br><br>
+Book ID: {{ book.id }}<br><br>
 
 <form [formGroup]="bookForm" novalidate (ngSubmit)="onSubmit()">
   <mat-card>

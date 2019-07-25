@@ -43,9 +43,4 @@ export class BooksContainerComponent implements OnInit {
     );
   }
 
-  public onSelect(book: Book) {
-    console.log(book);
-    this.router.navigate(['books/' + book.id]);
-  }
-
 }

@@ -1,7 +1,7 @@
 
 <div  *ngIf="!(isBookSelected$ | async)">
   <div *ngFor="let book of books$ | async">
-    <mat-card class="list-item" (click)="onSelect(book)">{{ book.title }}</mat-card>
+    <mat-card class="list-item" [routerLink]="book.id">{{ book.title }}</mat-card>
   </div>
 </div>
 
