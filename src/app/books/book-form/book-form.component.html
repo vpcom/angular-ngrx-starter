@@ -21,7 +21,7 @@ Book ID: {{ book.id }}<br><br>
         <div class="col">
           <mat-form-field class="full-width">
             <mat-select placeholder="Author *" formControlName="author">
-              <mat-option *ngFor="let author of authors" [value]="author.abbreviation">
+              <mat-option *ngFor="let author of authors" [value]="author.id">
                 {{ author.name }}
               </mat-option>
             </mat-select>

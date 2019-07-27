@@ -20,10 +20,11 @@ export class BookFormComponent {
   });
 
   hasUnitNumber = false;
+  selectedAuthor: string;
 
   authors = [
-    {name: 'Author 1', abbreviation: 'A1'},
-    {name: 'Author 2', abbreviation: 'A2'}
+    {name: 'Fake author 1', id: '1'},
+    {name: 'Fake author 2', id: '2'}
   ];
 
   bookId$: Observable<number>;
@@ -33,12 +34,13 @@ export class BookFormComponent {
   ngOnInit() {
     console.log(this.book);
     this.bookForm.patchValue(this.book);
+    this.bookForm.get('author').setValue(this.book.authorId.toString());
   }
 
   onSubmit(e) {
     if (this.bookForm.valid) {
       console.log(this.bookForm.value);
-      alert('Saved!');
+      alert('Not really saved yet!');
     }
   }
 
