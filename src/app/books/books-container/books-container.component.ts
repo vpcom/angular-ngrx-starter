@@ -2,11 +2,11 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { BehaviorSubject, combineLatest, Observable } from 'rxjs';
 import { Book } from '../books.model';
 import { Store, select } from '@ngrx/store';
-import { selectBooksArray, selectCurrentBook, selectUrlBookIdExists, selectUrlBookEdit } from '../store/books.selectors';
+import { selectBooksArray, selectCurrentBook,
+         selectUrlBookIdExists, selectUrlBookEdit } from '../store/books.selectors';
 import { selectLocalStorageIsInit } from 'src/app/reducers';
 import { LoadBooks } from '../store/books.actions';
 import { AppState } from '../../reducers/index';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-books-container',
@@ -21,11 +21,9 @@ export class BooksContainerComponent implements OnInit {
   bookSelected: boolean;
   isBookSelected$: Observable<any> = this.store.pipe(select(selectUrlBookIdExists));
   isBookEdited$: Observable<any> = this.store.pipe(select(selectUrlBookEdit));
-  // TODO, add the Author value to the current book object
   currentBook$: Observable<Book> = this.store.pipe(select(selectCurrentBook));
 
-  constructor(public store: Store<AppState>,
-              private router: Router) { }
+  constructor(public store: Store<AppState>) { }
 
   ngOnInit() {
     // Loading books from store and initialize the books store data if needed.

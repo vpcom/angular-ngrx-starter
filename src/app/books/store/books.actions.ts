@@ -19,7 +19,6 @@ export enum BookActionTypes {
 }
 
 // Used to reach an effect that loads data from server.
-// And will reach the store to set loading = true
 export class LoadBooks implements Action {
   readonly type = BookActionTypes.LoadBooks;
 }

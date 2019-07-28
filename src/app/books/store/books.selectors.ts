@@ -21,6 +21,11 @@ export const selectCurrentBook = createSelector(
   (entities, params) => params  && entities[params.state.params.id]
 );
 
+export const selectCurrentBookAuthor = createSelector(
+  selectCurrentBook,
+  (entities, params) => params  && entities[params.state.params.id]
+);
+
 export const selectUrlBookIdExists = createSelector(
   selectRouterState,
   (params) => params.state.params.id

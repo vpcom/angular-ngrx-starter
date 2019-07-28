@@ -21,6 +21,7 @@ export class BookDetailsComponent implements OnInit {
   constructor(public store: Store<BookState>) {}
 
   ngOnInit() {
+    console.log(this.book);
   }
   
 }
