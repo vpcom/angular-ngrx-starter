@@ -12,7 +12,8 @@ export const routes: Routes = [
   {
     path: 'welcome',
     component: WelcomeComponent,
-    data:  {title: translatedText['welcome.title'] } },
+    data:  {title: translatedText['welcome.title'] }
+  },
   {
     path: 'books', 
     loadChildren: () => import('./books/books.module').then(mod => mod.BooksModule)
