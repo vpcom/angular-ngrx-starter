@@ -12,7 +12,7 @@ export const routes: Routes = [
   {
     path: 'welcome',
     component: WelcomeComponent,
-    data:  {title: translatedText['welcome.title'] }
+    data:  { title: translatedText['welcome.title'] }
   },
   {
     path: 'books', 
