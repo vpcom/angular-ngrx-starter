@@ -13,7 +13,8 @@ import { ConditionalExpr } from '@angular/compiler';
 export class AppComponent implements OnInit {
   navigation = [
     { link: 'welcome', label: translatedText['nav.welcome'] },
-    { link: 'books', label: translatedText['nav.book'] }
+    { link: 'books', label: translatedText['nav.book'] },
+    { link: 'authors', label: translatedText['nav.author'] }
   ];
 
   constructor(public store: Store<LocalStorageState>) { }

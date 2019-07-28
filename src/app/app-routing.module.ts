@@ -1,4 +1,3 @@
-import { BooksContainerComponent } from './books/books-container/books-container.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { WelcomeComponent } from './welcome/welcome.component';
@@ -17,7 +16,11 @@ export const routes: Routes = [
   {
     path: 'books', 
     loadChildren: () => import('./books/books.module').then(mod => mod.BooksModule)
- }
+  },
+  {
+    path: 'authors', 
+    loadChildren: () => import('./authors/authors.module').then(mod => mod.AuthorsModule)
+  }
 ];
 
 @NgModule({

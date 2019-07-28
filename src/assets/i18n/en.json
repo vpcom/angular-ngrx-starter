@@ -1,6 +1,8 @@
 {
   "nav.welcome": "Welcome page",
   "nav.book": "Book catalog",
+  "nav.author": "Author list",
   "welcome.title": "Welcome to Angular NgRx starter!",
-  "book.title": "Book catalog"
+  "book.title": "Book catalog",
+  "author.title": "Author list"
 }
