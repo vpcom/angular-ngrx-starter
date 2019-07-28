@@ -8,9 +8,10 @@ import { StoreModule } from '@ngrx/store';
 import * as fromAuthors from './authors.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { AuthorsEffects } from './authors.effects';
+import { AuthorsContainerComponent } from './authors-container/authors-container.component';
 
 @NgModule({
-  declarations: [],
+  declarations: [AuthorsContainerComponent],
   imports: [
     CommonModule,
     AuthorsRoutingModule,
