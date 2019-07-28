@@ -1,3 +1,6 @@
 export interface Authors {
-  id: string;
+  id: number;
+  name: string;
+  bookIds: number[];
+  biography: string;
 }
