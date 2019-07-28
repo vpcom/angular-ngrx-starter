@@ -12,6 +12,8 @@ const JSON_EXTENSION = '.json';
 })
 export class LocalStorageService {
 
+  // The books data entry is the most important important reference
+  booksDataReferenceName = 'books';
   fileList = ['authors',
               'book-1',
               'book-2',
@@ -19,7 +21,7 @@ export class LocalStorageService {
               'book-4',
               'books-fromAuthor-1',
               'books-fromAuthor-2',
-              'books'];
+              this.booksDataReferenceName];
 
   constructor(private http: HttpClient) { }
 
@@ -71,6 +73,6 @@ export class LocalStorageService {
    * Function used to give back the value of a well known entry for testing its value.
    */
   private test(): Observable<boolean> {
-    return of(this.getItem('books'));
+    return of(this.getItem(this.booksDataReferenceName));
   }
 }
