@@ -21,6 +21,7 @@ import { appReducers, metaReducers } from './reducers';
 import { AppEffects } from './app.effects';
 import { LocalStorageEffects } from './local-storage/local-storage.effects';
 import { CustomSerializer } from './router/custom-serializer';
+import { AuthorsModule } from './authors/authors.module';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { CustomSerializer } from './router/custom-serializer';
     MaterialModule,
     
     BooksModule,
+    AuthorsModule,
 
     StoreModule.forRoot(appReducers, { metaReducers }),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
