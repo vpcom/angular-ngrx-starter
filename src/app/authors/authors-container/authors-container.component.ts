@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Authors } from '../authors.model';
+import { Author } from '../authors.model';
 
 @Component({
   selector: 'app-authors-container',
@@ -9,7 +9,7 @@ import { Authors } from '../authors.model';
 })
 export class AuthorsContainerComponent implements OnInit {
 
-  constructor(private store: Store<Authors>) { }
+  constructor(private store: Store<Author>) { }
 
   ngOnInit() {
   }

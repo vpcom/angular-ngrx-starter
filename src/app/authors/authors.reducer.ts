@@ -1,12 +1,12 @@
 import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
-import { Authors } from './authors.model';
-import { AuthorsActions, AuthorsActionTypes } from './authors.actions';
+import { Author } from './authors.model';
+import { AuthorActions, AuthorActionTypes } from './authors.actions';
 
-export interface State extends EntityState<Authors> {
+export interface State extends EntityState<Author> {
   // additional entities state properties
 }
 
-export const adapter: EntityAdapter<Authors> = createEntityAdapter<Authors>();
+export const adapter: EntityAdapter<Author> = createEntityAdapter<Author>();
 
 export const initialState: State = adapter.getInitialState({
   // additional entity state properties
@@ -14,46 +14,46 @@ export const initialState: State = adapter.getInitialState({
 
 export function reducer(
   state = initialState,
-  action: AuthorsActions
+  action: AuthorActions
 ): State {
   switch (action.type) {
-    case AuthorsActionTypes.AddAuthors: {
-      return adapter.addOne(action.payload.authors, state);
+    case AuthorActionTypes.AddAuthor: {
+      return adapter.addOne(action.payload.author, state);
     }
 
-    case AuthorsActionTypes.UpsertAuthors: {
-      return adapter.upsertOne(action.payload.authors, state);
+    case AuthorActionTypes.UpsertAuthor: {
+      return adapter.upsertOne(action.payload.author, state);
     }
 
-    case AuthorsActionTypes.AddAuthorss: {
-      return adapter.addMany(action.payload.authorss, state);
+    case AuthorActionTypes.AddAuthors: {
+      return adapter.addMany(action.payload.authors, state);
     }
 
-    case AuthorsActionTypes.UpsertAuthorss: {
-      return adapter.upsertMany(action.payload.authorss, state);
+    case AuthorActionTypes.UpsertAuthors: {
+      return adapter.upsertMany(action.payload.authors, state);
     }
 
-    case AuthorsActionTypes.UpdateAuthors: {
-      return adapter.updateOne(action.payload.authors, state);
+    case AuthorActionTypes.UpdateAuthor: {
+      return adapter.updateOne(action.payload.author, state);
     }
 
-    case AuthorsActionTypes.UpdateAuthorss: {
-      return adapter.updateMany(action.payload.authorss, state);
+    case AuthorActionTypes.UpdateAuthors: {
+      return adapter.updateMany(action.payload.authors, state);
     }
 
-    case AuthorsActionTypes.DeleteAuthors: {
+    case AuthorActionTypes.DeleteAuthor: {
       return adapter.removeOne(action.payload.id, state);
     }
 
-    case AuthorsActionTypes.DeleteAuthorss: {
+    case AuthorActionTypes.DeleteAuthors: {
       return adapter.removeMany(action.payload.ids, state);
     }
 
-    case AuthorsActionTypes.LoadAuthorss: {
-      return adapter.addAll(action.payload.authorss, state);
+    case AuthorActionTypes.LoadAuthors: {
+      return adapter.addAll(action.payload.authors, state);
     }
 
-    case AuthorsActionTypes.ClearAuthorss: {
+    case AuthorActionTypes.ClearAuthors: {
       return adapter.removeAll(state);
     }
 

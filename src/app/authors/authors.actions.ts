@@ -1,86 +1,86 @@
 import { Action } from '@ngrx/store';
 import { Update } from '@ngrx/entity';
-import { Authors } from './authors.model';
+import { Author } from './authors.model';
 
-export enum AuthorsActionTypes {
-  LoadAuthorss = '[Authors] Load Authorss',
-  AddAuthors = '[Authors] Add Authors',
-  UpsertAuthors = '[Authors] Upsert Authors',
-  AddAuthorss = '[Authors] Add Authorss',
-  UpsertAuthorss = '[Authors] Upsert Authorss',
-  UpdateAuthors = '[Authors] Update Authors',
-  UpdateAuthorss = '[Authors] Update Authorss',
-  DeleteAuthors = '[Authors] Delete Authors',
-  DeleteAuthorss = '[Authors] Delete Authorss',
-  ClearAuthorss = '[Authors] Clear Authorss'
+export enum AuthorActionTypes {
+  LoadAuthors = '[Author] Load Authors',
+  AddAuthor = '[Author] Add Author',
+  UpsertAuthor = '[Author] Upsert Author',
+  AddAuthors = '[Author] Add Authors',
+  UpsertAuthors = '[Author] Upsert Authors',
+  UpdateAuthor = '[Author] Update Author',
+  UpdateAuthors = '[Author] Update Authors',
+  DeleteAuthor = '[Author] Delete Author',
+  DeleteAuthors = '[Author] Delete Authors',
+  ClearAuthors = '[Author] Clear Authors'
 }
 
-export class LoadAuthorss implements Action {
-  readonly type = AuthorsActionTypes.LoadAuthorss;
+export class LoadAuthors implements Action {
+  readonly type = AuthorActionTypes.LoadAuthors;
 
-  constructor(public payload: { authorss: Authors[] }) {}
+  constructor(public payload: { authors: Author[] }) {}
+}
+
+export class AddAuthor implements Action {
+  readonly type = AuthorActionTypes.AddAuthor;
+
+  constructor(public payload: { author: Author }) {}
+}
+
+export class UpsertAuthor implements Action {
+  readonly type = AuthorActionTypes.UpsertAuthor;
+
+  constructor(public payload: { author: Author }) {}
 }
 
 export class AddAuthors implements Action {
-  readonly type = AuthorsActionTypes.AddAuthors;
+  readonly type = AuthorActionTypes.AddAuthors;
 
-  constructor(public payload: { authors: Authors }) {}
+  constructor(public payload: { authors: Author[] }) {}
 }
 
 export class UpsertAuthors implements Action {
-  readonly type = AuthorsActionTypes.UpsertAuthors;
+  readonly type = AuthorActionTypes.UpsertAuthors;
 
-  constructor(public payload: { authors: Authors }) {}
+  constructor(public payload: { authors: Author[] }) {}
 }
 
-export class AddAuthorss implements Action {
-  readonly type = AuthorsActionTypes.AddAuthorss;
+export class UpdateAuthor implements Action {
+  readonly type = AuthorActionTypes.UpdateAuthor;
 
-  constructor(public payload: { authorss: Authors[] }) {}
-}
-
-export class UpsertAuthorss implements Action {
-  readonly type = AuthorsActionTypes.UpsertAuthorss;
-
-  constructor(public payload: { authorss: Authors[] }) {}
+  constructor(public payload: { author: Update<Author> }) {}
 }
 
 export class UpdateAuthors implements Action {
-  readonly type = AuthorsActionTypes.UpdateAuthors;
+  readonly type = AuthorActionTypes.UpdateAuthors;
 
-  constructor(public payload: { authors: Update<Authors> }) {}
+  constructor(public payload: { authors: Update<Author>[] }) {}
 }
 
-export class UpdateAuthorss implements Action {
-  readonly type = AuthorsActionTypes.UpdateAuthorss;
-
-  constructor(public payload: { authorss: Update<Authors>[] }) {}
-}
-
-export class DeleteAuthors implements Action {
-  readonly type = AuthorsActionTypes.DeleteAuthors;
+export class DeleteAuthor implements Action {
+  readonly type = AuthorActionTypes.DeleteAuthor;
 
   constructor(public payload: { id: string }) {}
 }
 
-export class DeleteAuthorss implements Action {
-  readonly type = AuthorsActionTypes.DeleteAuthorss;
+export class DeleteAuthors implements Action {
+  readonly type = AuthorActionTypes.DeleteAuthors;
 
   constructor(public payload: { ids: string[] }) {}
 }
 
-export class ClearAuthorss implements Action {
-  readonly type = AuthorsActionTypes.ClearAuthorss;
+export class ClearAuthors implements Action {
+  readonly type = AuthorActionTypes.ClearAuthors;
 }
 
-export type AuthorsActions =
- LoadAuthorss
+export type AuthorActions =
+ LoadAuthors
+ | AddAuthor
+ | UpsertAuthor
  | AddAuthors
  | UpsertAuthors
- | AddAuthorss
- | UpsertAuthorss
+ | UpdateAuthor
  | UpdateAuthors
- | UpdateAuthorss
+ | DeleteAuthor
  | DeleteAuthors
- | DeleteAuthorss
- | ClearAuthorss;
+ | ClearAuthors;
