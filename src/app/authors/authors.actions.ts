@@ -4,6 +4,8 @@ import { Author } from './authors.model';
 
 export enum AuthorActionTypes {
   LoadAuthors = '[Author] Load Authors',
+  LoadAuthorsSuccess = '[Author] Load Authors Success',
+  LoadAuthorsFailure = '[Author] Load Authors Failure',
   AddAuthor = '[Author] Add Author',
   UpsertAuthor = '[Author] Upsert Author',
   AddAuthors = '[Author] Add Authors',
@@ -18,7 +20,17 @@ export enum AuthorActionTypes {
 export class LoadAuthors implements Action {
   readonly type = AuthorActionTypes.LoadAuthors;
 
-  constructor(public payload: { authors: Author[] }) {}
+  constructor() {}
+}
+
+export class LoadAuthorsSuccess implements Action {
+  readonly type = AuthorActionTypes.LoadAuthorsSuccess;
+  constructor(public payload: { data: any }) { }
+}
+
+export class LoadAuthorsFailure implements Action {
+  readonly type = AuthorActionTypes.LoadAuthorsFailure;
+  constructor(public payload: { error: any }) { }
 }
 
 export class AddAuthor implements Action {
@@ -74,7 +86,7 @@ export class ClearAuthors implements Action {
 }
 
 export type AuthorActions =
- LoadAuthors
+ LoadAuthors | LoadAuthorsSuccess | LoadAuthorsFailure
  | AddAuthor
  | UpsertAuthor
  | AddAuthors

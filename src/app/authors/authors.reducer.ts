@@ -2,20 +2,20 @@ import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
 import { Author } from './authors.model';
 import { AuthorActions, AuthorActionTypes } from './authors.actions';
 
-export interface State extends EntityState<Author> {
+export interface AuthorState extends EntityState<Author> {
   // additional entities state properties
 }
 
 export const adapter: EntityAdapter<Author> = createEntityAdapter<Author>();
 
-export const initialState: State = adapter.getInitialState({
+export const initialState: AuthorState = adapter.getInitialState({
   // additional entity state properties
 });
 
 export function reducer(
   state = initialState,
   action: AuthorActions
-): State {
+): AuthorState {
   switch (action.type) {
     case AuthorActionTypes.AddAuthor: {
       return adapter.addOne(action.payload.author, state);
@@ -50,8 +50,12 @@ export function reducer(
     }
 
     case AuthorActionTypes.LoadAuthors: {
-      return adapter.addAll(action.payload.authors, state);
+      return state;
     }
+    case AuthorActionTypes.LoadAuthorsSuccess:
+      return adapter.addAll(action.payload.data, state);
+    case AuthorActionTypes.LoadAuthorsFailure:
+      return state;
 
     case AuthorActionTypes.ClearAuthors: {
       return adapter.removeAll(state);
