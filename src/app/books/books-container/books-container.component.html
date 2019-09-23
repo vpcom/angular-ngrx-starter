@@ -1,14 +1,17 @@
 
+<!-- List of books -->
 <div  *ngIf="!(isBookSelected$ | async)">
   <div *ngFor="let book of books$ | async">
     <mat-card class="list-item" [routerLink]="book.id">{{ book.title }}</mat-card>
   </div>
 </div>
 
-<app-book-details *ngIf="(isBookSelected$ | async) && !(isBookEdited$ | async)"
+<!-- A book details -->
+<app-book-details *ngIf="(isBookSelected$ | async) && !(isBookBeingEdited$ | async)"
   [book]="currentBook$ | async">
 </app-book-details>
 
-<app-book-form *ngIf="isBookEdited$ | async"
+<!-- Form to edit a book -->
+<app-book-form *ngIf="isBookBeingEdited$ | async"
   [book]="currentBook$ | async">
 </app-book-form>

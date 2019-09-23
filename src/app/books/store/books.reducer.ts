@@ -18,7 +18,9 @@ export function reducer(state = initialState, action: BooksActions): BookState {
     case BookActionTypes.LoadBooks:
       // TODO set loading = true;
       return state;
+    // When the data has been retrieved, the collection is added to the state.
     case BookActionTypes.LoadBooksSuccess:
+      debugger;
       return adapter.addAll(action.payload.data, state);
     case BookActionTypes.LoadBooksFailure:
       return state;
