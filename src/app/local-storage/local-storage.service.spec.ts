@@ -13,4 +13,10 @@ describe('LocalStorageService', () => {
     const service: LocalStorageService = TestBed.get(LocalStorageService);
     expect(service).toBeTruthy();
   });
+
+  it('should init the local storage', () => {
+    const service: LocalStorageService = TestBed.get(LocalStorageService);
+    service.init();
+    expect(typeof service.getAll() !== undefined).toBe(true);
+   });
 });

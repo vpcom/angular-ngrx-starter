@@ -63,10 +63,17 @@ export class LocalStorageService {
   }
 
   /**
-   * TODO debug only
+   * Debug only
    */
   public printAll() {
     console.log(localStorage);
+  }
+
+  /**
+   * For testing
+   */
+  public getAll(): any {
+    return localStorage;
   }
 
   /**

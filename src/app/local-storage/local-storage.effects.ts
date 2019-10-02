@@ -26,6 +26,11 @@ export class LocalStorageEffects {
   init$ = this.actions$.pipe(
     ofType<ActionLocalStorageInit>(LocalStorageActionTypes.INIT),
     switchMap(() => this.localStorageService.init().pipe(
+      tap(x => {
+        console.log(x);
+        console.log(this.localStorageService.printAll());
+        return x;
+      }),
       map(books => this.store.dispatch(new LocalStorageInitSuccess())),
       catchError(error => {
         this.store.dispatch(new LocalStorageInitFailure(error));
