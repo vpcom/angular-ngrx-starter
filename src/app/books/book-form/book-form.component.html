@@ -1,10 +1,8 @@
 
-Book ID: {{ book.id }}<br><br>
-
 <form [formGroup]="bookForm" novalidate (ngSubmit)="onSubmit()">
   <mat-card>
     <div class="row">
-      <mat-card-title>Book title</mat-card-title>
+      <mat-card-title>{{ book.title }}</mat-card-title>
     </div>
     <mat-card-content>
       <div class="row">
@@ -12,7 +10,7 @@ Book ID: {{ book.id }}<br><br>
           <mat-form-field class="full-width">
             <input matInput placeholder="Title *" formControlName="title">
             <mat-error *ngIf="bookForm.controls['title'].hasError('required')">
-                Title is <strong>required</strong>
+              Title is <strong>required</strong>
             </mat-error>
           </mat-form-field>
         </div>
