@@ -20,12 +20,12 @@ Book ID: {{ book.id }}<br><br>
       <div class="row">
         <div class="col">
           <mat-form-field class="full-width">
-            <mat-select placeholder="Author *" formControlName="author">
+            <mat-select placeholder="Author *" formControlName="authorId">
               <mat-option *ngFor="let author of authors" [value]="author.id">
                 {{ author.name }}
               </mat-option>
             </mat-select>
-            <mat-error *ngIf="bookForm.controls['author'].hasError('required')">
+            <mat-error *ngIf="bookForm.controls['authorId'].hasError('required')">
               Author is <strong>required</strong>
             </mat-error>
           </mat-form-field>

@@ -1,7 +1,9 @@
-import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Input, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { Book } from '../books.model';
+import { Store } from '@ngrx/store';
+import { AppState } from 'src/app/reducers';  
 
 @Component({
   selector: 'app-book-form',
@@ -12,16 +14,19 @@ import { Book } from '../books.model';
 export class BookFormComponent {
 
   @Input() book: Book;
+  @Output() updatedBook = new EventEmitter<Book>();
 
   bookForm = this.fb.group({
+    id: [null],
     title: [null, Validators.required],
-    author: [null, Validators.required],
+    authorId: [null, Validators.required],
     summary: ''
   });
 
   hasUnitNumber = false;
   selectedAuthor: string;
 
+  // TODO take date from service/store
   authors = [
     {name: 'Fake author 1', id: '1'},
     {name: 'Fake author 2', id: '2'}
@@ -29,18 +34,20 @@ export class BookFormComponent {
 
   bookId$: Observable<number>;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder,
+              public store: Store<AppState>) { } // Should be moved to smart parent component
 
   ngOnInit() {
     console.log(this.book);
     this.bookForm.patchValue(this.book);
-    this.bookForm.get('author').setValue(this.book.authorId.toString());
+    this.bookForm.get('authorId').setValue(this.book.authorId.toString());
   }
 
   onSubmit(e) {
     if (this.bookForm.valid) {
       console.log(this.bookForm.value);
-      alert('Not really saved yet!');
+
+      this.updatedBook.emit(this.bookForm.value);
     }
   }
 

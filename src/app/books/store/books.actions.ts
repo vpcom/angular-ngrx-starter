@@ -13,9 +13,11 @@ export enum BookActionTypes {
   UpsertBooks = '[Book] Upsert Books',
   UpdateBook = '[Book] Update Book',
   UpdateBooks = '[Book] Update Books',
+  UpdateBookSuccess = '[Book] Update Books Success',
   DeleteBook = '[Book] Delete Book',
   DeleteBooks = '[Book] Delete Books',
-  ClearBooks = '[Book] Clear Books'
+  ClearBooks = '[Book] Clear Books',
+  SavingBooks =  '[Book] Saving Books',
 }
 
 // Used to reach an effect that loads data from server.
@@ -25,7 +27,9 @@ export class LoadBooks implements Action {
 
 export class LoadBooksSuccess implements Action {
   readonly type = BookActionTypes.LoadBooksSuccess;
-  constructor(public payload: { data: any }) { }
+  constructor(public payload: { data: any }) { 
+    console.log(payload);
+  }
 }
 
 export class LoadBooksFailure implements Action {
@@ -60,7 +64,16 @@ export class UpsertBooks implements Action {
 export class UpdateBook implements Action {
   readonly type = BookActionTypes.UpdateBook;
 
-  constructor(public payload: { book: Update<Book> }) {}
+  constructor(public payload: { book: Update<Book> }) {
+    console.log(payload);}
+}
+
+export class UpdateBookSuccess implements Action {
+  readonly type = BookActionTypes.UpdateBookSuccess;
+  
+  constructor(public payload: { book: Update<Book> }) {
+    console.log(payload);
+  }
 }
 
 export class UpdateBooks implements Action {
@@ -85,14 +98,21 @@ export class ClearBooks implements Action {
   readonly type = BookActionTypes.ClearBooks;
 }
 
+export class SavingBooks implements Action {
+  readonly type = BookActionTypes.SavingBooks;
+
+  constructor(public isSaving: boolean) {}
+}
+
 export type BooksActions = LoadBooks | LoadBooksSuccess | LoadBooksFailure
 | AddBook
 | UpsertBook
 | AddBooks
 | UpsertBooks
-| UpdateBook
+| UpdateBook | UpdateBookSuccess
 | UpdateBooks
 | DeleteBook
 | DeleteBooks
-| ClearBooks;
+| ClearBooks
+| SavingBooks;
 

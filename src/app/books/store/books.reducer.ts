@@ -3,13 +3,13 @@ import { Book } from '../books.model';
 import { BooksActions, BookActionTypes } from './books.actions';
 
 export interface BookState extends EntityState<Book> {
-  // additional entities state properties
+  savingBooks: boolean;
 }
 
 export const adapter: EntityAdapter<Book> = createEntityAdapter<Book>();
 
 export const initialState: BookState = adapter.getInitialState({
-  // additional entity state properties
+  savingBooks: false,
 });
 
 export function reducer(state = initialState, action: BooksActions): BookState {
@@ -20,7 +20,7 @@ export function reducer(state = initialState, action: BooksActions): BookState {
       return state;
     // When the data has been retrieved, the collection is added to the state.
     case BookActionTypes.LoadBooksSuccess:
-      debugger;
+        console.log(action);
       return adapter.addAll(action.payload.data, state);
     case BookActionTypes.LoadBooksFailure:
       return state;
@@ -42,6 +42,13 @@ export function reducer(state = initialState, action: BooksActions): BookState {
     }
 
     case BookActionTypes.UpdateBook: {
+      console.log(action);
+      //return { ...state, savingBooks: true };
+      return state;
+    }
+
+    case BookActionTypes.UpdateBookSuccess: {
+      console.log(state, action);
       return adapter.updateOne(action.payload.book, state);
     }
 

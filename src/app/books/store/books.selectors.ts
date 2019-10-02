@@ -5,10 +5,10 @@ import { selectRouterState } from 'src/app/reducers';
 
 export const selectBooksState = createFeatureSelector<BookState>("books");
 
-  export const selectBooksEntities = createSelector(
-    selectBooksState,
-    (bookState: BookState) => bookState.entities
-  );
+export const selectBooksEntities = createSelector(
+  selectBooksState,
+  (bookState: BookState) => bookState.entities
+);
 
 export const selectBooksArray = createSelector(
   selectBooksEntities,
@@ -34,4 +34,9 @@ export const selectUrlBookIdExists = createSelector(
 export const selectUrlBookEdit = createSelector(
   selectRouterState,
   (params) => params.state.url.endsWith('edit')
+);
+
+export const selectAreBooksSaving = createSelector(
+  selectBooksState,
+  (bookState: BookState) => bookState.savingBooks
 );

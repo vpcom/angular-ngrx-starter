@@ -1,4 +1,5 @@
 
+<div id='saving'></div>
 <!-- List of books -->
 <div  *ngIf="!(isBookSelected$ | async)">
   <div *ngFor="let book of books$ | async">
@@ -13,5 +14,6 @@
 
 <!-- Form to edit a book -->
 <app-book-form *ngIf="isBookBeingEdited$ | async"
-  [book]="currentBook$ | async">
+  [book]="currentBook$ | async"
+  (updatedBook)="onBookUpdate($event)">
 </app-book-form>

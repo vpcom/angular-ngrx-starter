@@ -3,10 +3,11 @@ import { BehaviorSubject, combineLatest, Observable } from 'rxjs';
 import { Book } from '../books.model';
 import { Store, select } from '@ngrx/store';
 import { selectBooksArray, selectCurrentBook,
-         selectUrlBookIdExists, selectUrlBookEdit } from '../store/books.selectors';
+         selectUrlBookIdExists, selectUrlBookEdit, selectAreBooksSaving } from '../store/books.selectors';
 import { selectLocalStorageIsInit } from 'src/app/reducers';
-import { LoadBooks } from '../store/books.actions';
+import { LoadBooks, UpdateBook } from '../store/books.actions';
 import { AppState } from '../../reducers/index';
+import { Update } from '@ngrx/entity';
 
 @Component({
   selector: 'app-books-container',
@@ -39,6 +40,27 @@ export class BooksContainerComponent implements OnInit {
         }
       }
     );
+
+    this.currentBook$ = this.store.pipe(select(selectCurrentBook));
+  }
+
+
+  onBookUpdate(book: Book) {
+    console.log(book);
+    
+    var savingMessage = document.getElementById('saving');
+    savingMessage.innerText = 'saving';
+
+    const bookUpdate: Update<Book> = {
+      id: book.id,
+      changes: book
+    };
+
+    this.store.dispatch(new UpdateBook({book: bookUpdate}));
+    this.store.pipe(select(selectAreBooksSaving)).subscribe(data => {
+      savingMessage.innerText = 'saving done';
+    })
+    
   }
 
 }
