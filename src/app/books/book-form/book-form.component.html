@@ -8,7 +8,7 @@
       <div class="row">
         <div class="col">
           <mat-form-field class="full-width">
-            <input matInput placeholder="Title *" formControlName="title">
+            <input matInput placeholder="Title *" formControlName="title" id="edit-title">
             <mat-error *ngIf="bookForm.controls['title'].hasError('required')">
               Title is <strong>required</strong>
             </mat-error>
