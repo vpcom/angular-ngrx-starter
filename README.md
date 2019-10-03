@@ -2,7 +2,7 @@
 
 *In Progress*
 
-This project is an Angular starter application following the redux pattern and using NgRx's Actions, Effects and Entities in order to have a neat scalable app working like a state machine.
+This project is an Angular starter application following the redux pattern and using NgRx's Actions, Effects and Entities in order to have a neat and scalable frontend. It uses Material Design for the look and Karma/Jasmine for the unit tests and Cypress for the end-to-end testing.
 
 ## Technical notes
 
