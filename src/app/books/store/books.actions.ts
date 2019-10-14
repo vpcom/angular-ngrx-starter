@@ -13,8 +13,11 @@ export enum BookActionTypes {
   UpsertBooks = '[Book] Upsert Books',
   UpdateBook = '[Book] Update Book',
   UpdateBooks = '[Book] Update Books',
-  UpdateBookSuccess = '[Book] Update Books Success',
+  UpdateBookSuccess = '[Book] Update Book Success',
+  UpdateBookFailure = '[Book] Update Book Failure',
   DeleteBook = '[Book] Delete Book',
+  DeleteBookSuccess = '[Book] Delete Book Success',
+  DeleteBookFailure = '[Book] Delete Book Failure',
   DeleteBooks = '[Book] Delete Books',
   ClearBooks = '[Book] Clear Books',
   SavingBooks =  '[Book] Saving Books',
@@ -76,6 +79,12 @@ export class UpdateBookSuccess implements Action {
   }
 }
 
+export class UpdateBookFailure implements Action {
+  readonly type = BookActionTypes.UpdateBookFailure;
+  
+  constructor(public payload: { error: any }) { }
+}
+
 export class UpdateBooks implements Action {
   readonly type = BookActionTypes.UpdateBooks;
 
@@ -86,6 +95,18 @@ export class DeleteBook implements Action {
   readonly type = BookActionTypes.DeleteBook;
 
   constructor(public payload: { id: string }) {}
+}
+
+export class DeleteBookSuccess implements Action {
+  readonly type = BookActionTypes.DeleteBookSuccess;
+  
+  constructor(public payload: { id: string }) { }
+}
+
+export class DeleteBookFailure implements Action {
+  readonly type = BookActionTypes.DeleteBookFailure;
+  
+  constructor(public payload: { error: any }) { }
 }
 
 export class DeleteBooks implements Action {
@@ -109,9 +130,9 @@ export type BooksActions = LoadBooks | LoadBooksSuccess | LoadBooksFailure
 | UpsertBook
 | AddBooks
 | UpsertBooks
-| UpdateBook | UpdateBookSuccess
+| UpdateBook | UpdateBookSuccess | UpdateBookFailure
 | UpdateBooks
-| DeleteBook
+| DeleteBook | DeleteBookSuccess | DeleteBookFailure
 | DeleteBooks
 | ClearBooks
 | SavingBooks;

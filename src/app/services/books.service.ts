@@ -13,7 +13,7 @@ export class BooksService {
   constructor(private localStorageService: LocalStorageService) { }
 
   /**
-   * Loads JSON data representing a list of all books including minimal data.
+   * Loads JSON data representing a list of all books.
    */
   public getAllBooks(): Observable<Book[]> {
     if (environment.debugMode) {
@@ -24,7 +24,7 @@ export class BooksService {
   }
 
   /**
-   * Loads JSON data representing a list of all books including minimal data.
+   * Updates a book
    */
   public updateBook(book: Partial<Book>): Observable<Book> {
     console.log(book);
@@ -42,6 +42,27 @@ export class BooksService {
       );
     } catch (error) {
       console.log('Error while updating the local storage');
+      return;
+    }
+  }
+
+  /**
+   * Deletes a book
+   */
+  public deleteBook(id: string): Observable<string> {
+    console.log(id);
+    if (environment.debugMode) {
+      console.log('HTTP request: deleteBook');
+    }
+
+    try {
+      this.localStorageService.removeItem('book-' + id);
+      this.localStorageService.printAll();
+      return of(id).pipe(
+        delay(1500)
+      );
+    } catch (error) {
+      console.log('Error while deleting an entry in the local storage');
       return;
     }
   }

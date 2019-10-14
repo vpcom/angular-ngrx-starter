@@ -5,7 +5,7 @@ import { Store, select } from '@ngrx/store';
 import { selectBooksArray, selectCurrentBook,
          selectUrlBookIdExists, selectUrlBookEdit, selectAreBooksSaving } from '../store/books.selectors';
 import { selectLocalStorageIsInit } from 'src/app/reducers';
-import { LoadBooks, UpdateBook } from '../store/books.actions';
+import { LoadBooks, UpdateBook, DeleteBook } from '../store/books.actions';
 import { AppState } from '../../reducers/index';
 import { Update } from '@ngrx/entity';
 
@@ -61,6 +61,10 @@ export class BooksContainerComponent implements OnInit {
       savingMessage.innerText = 'saving done';
     })
     
+  }
+
+  onBookDelete(id: string) {
+    this.store.dispatch(new DeleteBook({id: id}));
   }
 
 }

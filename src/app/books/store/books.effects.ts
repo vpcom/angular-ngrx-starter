@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { catchError, map, switchMap, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
-import { LoadBooksFailure, LoadBooksSuccess, BookActionTypes, BooksActions, UpdateBookSuccess } from './books.actions';
+import { LoadBooksFailure, LoadBooksSuccess, BookActionTypes, BooksActions, UpdateBookSuccess, UpdateBookFailure, DeleteBookSuccess, DeleteBookFailure } from './books.actions';
 import { BooksService } from '../../services/books.service';
 import { Update } from '@ngrx/entity';
 import { Book } from '../books.model';
@@ -41,7 +41,21 @@ export class BooksEffects {
           };
           return new UpdateBookSuccess({book: bookUpdate})
         }),
-        catchError(error => of(new LoadBooksFailure(error))),
+        catchError(error => of(new UpdateBookFailure(error))),
+      )
+    ),
+  );
+
+  @Effect()
+  deleteBook$ = this.actions$.pipe(
+    ofType(BookActionTypes.DeleteBook),
+    tap(data =>   console.log(data)),
+    switchMap(book => this.booksService.deleteBook(book.payload.id)
+      .pipe(
+        map(id => {
+          return new DeleteBookSuccess({id: id})
+        }),
+        catchError(error => of(new DeleteBookFailure(error))),
       )
     ),
   );

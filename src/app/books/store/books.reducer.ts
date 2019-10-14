@@ -51,6 +51,10 @@ export function reducer(state = initialState, action: BooksActions): BookState {
       console.log(state, action);
       return adapter.updateOne(action.payload.book, state);
     }
+    case BookActionTypes.UpdateBookFailure: {
+      return state;
+    }
+    
 
     case BookActionTypes.UpdateBooks: {
       return adapter.updateMany(action.payload.books, state);

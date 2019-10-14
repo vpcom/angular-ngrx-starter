@@ -15,5 +15,6 @@
 <!-- Form to edit a book -->
 <app-book-form *ngIf="isBookBeingEdited$ | async"
   [book]="currentBook$ | async"
-  (updatedBook)="onBookUpdate($event)">
+  (updatedBook)="onBookUpdate($event)"
+  (deletedBook)="onBookDelete($event)">
 </app-book-form>

@@ -2,8 +2,7 @@ import { Component, ChangeDetectionStrategy, Input, Output, EventEmitter } from 
 import { FormBuilder, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { Book } from '../books.model';
-import { Store } from '@ngrx/store';
-import { AppState } from 'src/app/reducers';  
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-book-form',
@@ -15,6 +14,7 @@ export class BookFormComponent {
 
   @Input() book: Book;
   @Output() updatedBook = new EventEmitter<Book>();
+  @Output() deletedBook = new EventEmitter<Book>();
 
   bookForm = this.fb.group({
     id: [null],
@@ -35,7 +35,7 @@ export class BookFormComponent {
   bookId$: Observable<number>;
 
   constructor(private fb: FormBuilder,
-              public store: Store<AppState>) { } // Should be moved to smart parent component
+              private router: Router) { }
 
   ngOnInit() {
     console.log(this.book);
@@ -43,16 +43,15 @@ export class BookFormComponent {
     this.bookForm.get('authorId').setValue(this.book.authorId.toString());
   }
 
-  onSubmit(e) {
+  onSubmit() {
     if (this.bookForm.valid) {
-      console.log(this.bookForm.value);
-
       this.updatedBook.emit(this.bookForm.value);
     }
   }
 
   onDelete() {
-    alert('Are you sure you want to delete this book?');
+    this.deletedBook.emit(this.bookForm.controls.id.value);
+    this.router.navigate(['/books']);
   }
 
 }
