@@ -19,7 +19,6 @@ import { WelcomeComponent } from './welcome/welcome.component';
 
 import { appReducers, metaReducers } from './reducers';
 import { AppEffects } from './app.effects';
-import { LocalStorageEffects } from './local-storage/local-storage.effects';
 import { CustomSerializer } from './router/custom-serializer';
 import { AuthorsModule } from './authors/authors.module';
 
@@ -45,7 +44,7 @@ import { AuthorsModule } from './authors/authors.module';
     StoreRouterConnectingModule.forRoot({
       stateKey:'router',
       serializer: CustomSerializer}),
-    EffectsModule.forRoot([AppEffects, LocalStorageEffects]),
+    EffectsModule.forRoot([AppEffects]),
   ],
   providers: [],
   bootstrap: [AppComponent]

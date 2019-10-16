@@ -4,7 +4,7 @@ import { Book } from '../books.model';
 import { Store, select } from '@ngrx/store';
 import { selectBooksArray, selectCurrentBook,
          selectUrlBookIdExists, selectUrlBookEdit, selectAreBooksSaving } from '../store/books.selectors';
-import { selectLocalStorageIsInit } from 'src/app/reducers';
+import { selectLocalStorageIsInit } from 'src/app/local-storage/local-storage.selectors';
 import { LoadBooks, UpdateBook, DeleteBook } from '../store/books.actions';
 import { AppState } from '../../reducers/index';
 import { Update } from '@ngrx/entity';
@@ -46,8 +46,6 @@ export class BooksContainerComponent implements OnInit {
 
 
   onBookUpdate(book: Book) {
-    console.log(book);
-    
     var savingMessage = document.getElementById('saving');
     savingMessage.innerText = 'saving';
 

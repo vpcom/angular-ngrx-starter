@@ -3,8 +3,8 @@ import { Action } from '@ngrx/store';
 export enum LocalStorageActionTypes {
   CHECK_INIT = '[LocalStorage] CHECK_INIT',
   INIT = '[LocalStorage] INIT',
-  INIT_SUCCESS = '[LocalStorage] INIT_SUCCESS',
-  INIT_FAILURE = '[LocalStorage] INIT_FAILURE'
+  INIT_SUCCESS = '[LocalStorage] Init Success',
+  INIT_FAILURE = '[LocalStorage] Init Failure'
 }
 
 export class ActionLocalStorageInit implements Action {

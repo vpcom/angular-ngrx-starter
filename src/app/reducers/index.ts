@@ -24,13 +24,6 @@ export const appReducers: ActionReducerMap<AppState> = {
 // Router selector
 export const selectRouterState =
   createFeatureSelector<AppState, RouterReducerState<RouterStateUrl>>('router');
-// Local storage selector
-export const selectLocalStorageState =
-  createFeatureSelector<fromLocalStorage.LocalStorageState>('localStorage');
-export const selectLocalStorageIsInit = createSelector(
-  selectLocalStorageState,
-  (localStorageState: fromLocalStorage.LocalStorageState) => localStorageState.isInit
-);
 
 // Adds the storeFreeze security on dev mode
 export const metaReducers: MetaReducer<AppState>[] =

@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { Author } from '../authors.model';
-import { BehaviorSubject, Observable, combineLatest } from 'rxjs';
-import { selectUrlAuthorIdExists, selectUrlAuthorEdit, selectCurrentAuthor, selectAuthorsArray } from '../authors.selector';
-import { selectLocalStorageIsInit } from 'src/app/reducers';
+import { BehaviorSubject, combineLatest } from 'rxjs';
+import { selectAuthorsArray } from '../authors.selector';
+import { selectLocalStorageIsInit } from 'src/app/local-storage/local-storage.selectors';
 import { LoadAuthors } from '../authors.actions';
 
 @Component({
