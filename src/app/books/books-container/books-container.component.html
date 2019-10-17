@@ -1,5 +1,4 @@
 
-<div id='saving'></div>
 <!-- List of books -->
 <div  *ngIf="!(isBookSelected$ | async)">
   <div *ngFor="let book of books$ | async">
@@ -7,14 +6,16 @@
   </div>
 </div>
 
-<!-- A book details -->
-<app-book-details *ngIf="(isBookSelected$ | async) && !(isBookBeingEdited$ | async)"
-  [book]="currentBook$ | async">
-</app-book-details>
+<div *ngIf="(isBookSelected$ | async) && !(isLoading$ | async) && (isInit$ | async)">
+  <!-- A book's details -->
+  <app-book-details *ngIf="!(isBookBeingEdited$ | async)"
+    [book]="currentBook$ | async">
+  </app-book-details>
 
-<!-- Form to edit a book -->
-<app-book-form *ngIf="isBookBeingEdited$ | async"
-  [book]="currentBook$ | async"
-  (updatedBook)="onBookUpdate($event)"
-  (deletedBook)="onBookDelete($event)">
-</app-book-form>
+  <!-- Form to edit a book -->
+  <app-book-form *ngIf="isBookBeingEdited$ | async"
+    [book]="currentBook$ | async"
+    (updatedBook)="onBookUpdate($event)"
+    (deletedBook)="onBookDelete($event)">
+  </app-book-form>
+</div>

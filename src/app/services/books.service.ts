@@ -20,7 +20,9 @@ export class BooksService {
       console.log('HTTP request: getAllBooks');
     }
     
-    return of(this.localStorageService.getItem('books'));
+    return of(this.localStorageService.getItem('books')).pipe(
+      delay(1500)
+    );
   }
 
   /**

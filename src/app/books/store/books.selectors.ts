@@ -28,7 +28,7 @@ export const selectCurrentBookAuthor = createSelector(
 
 export const selectUrlBookIdExists = createSelector(
   selectRouterState,
-  (params) => params.state.params.id
+  (params) => typeof params.state.params.id !== 'undefined'
 );
 
 export const selectUrlBookEdit = createSelector(
@@ -36,7 +36,7 @@ export const selectUrlBookEdit = createSelector(
   (params) => params.state.url.endsWith('edit')
 );
 
-export const selectAreBooksSaving = createSelector(
+export const selectBooksLoading = createSelector(
   selectBooksState,
-  (bookState: BookState) => bookState.savingBooks
+  (bookState: BookState) => bookState.loading
 );

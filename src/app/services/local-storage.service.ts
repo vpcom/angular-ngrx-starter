@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { of, Observable, from, zip, throwError, iif } from 'rxjs';
-import { map, catchError, tap, mergeMap, concatMap, toArray } from 'rxjs/operators';
+import { of, Observable, from, zip, throwError } from 'rxjs';
+import { map, catchError, tap, concatMap, toArray, delay } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
 import { LocalStorageState } from '../local-storage/local-storage.reducer';
-import { LocalStorageInitSuccess } from '../local-storage/local-storage.actions';
 import { environment } from 'src/environments/environment';
 
 const JSON_PATH = './assets/data/';
@@ -43,35 +42,11 @@ export class LocalStorageService {
   public init(): Observable<any[]> {
     // localStorage.clear(); // TODO debug only
 
-    console.log('init')
-
-    const jsonData$ = this.getJsonData();
-
-
-    console.log(jsonData$);
-      
-    // const filesContent$ = from(this.jsonDataList).pipe(
-    //   tap(fileName => console.log('loading file: ' + fileName)),
-    //   concatMap(fileName => this.http.get(JSON_PATH + fileName + JSON_EXTENSION).pipe(
-    //     catchError(error => { console.log(error); return throwError(error) })
-    //   ))
-    // );
-
+    const jsonData$ = this.getJsonData().pipe(
+      delay(1500)
+    );
 
     return this.loadDataIntoLocalStorage(jsonData$);
-
-    // Data is added only if a known entry doesn't exist.
-    //const dataToStore$ = filesContent$;
-    // this.test().pipe(
-    //   mergeMap(v => iif(() => v === null, filesContent$))
-    // );
-
-    // return zip(from(this.jsonDataList), filesContent$).pipe(
-    //   map(([fileName, fileContent]) => localStorage.setItem(APP_PREFIX + fileName, JSON.stringify(fileContent))),
-    //   toArray(), // To have only 1 emition
-    //   tap(x => localStorage.setItem('book-catalog', '')),
-    //   catchError(error => { console.log(error); return throwError(error)})
-    // );
   }
   
   private getJsonData(): Observable<any> {
@@ -81,15 +56,14 @@ export class LocalStorageService {
         catchError(error => { console.log(error); return throwError(error) })
       ))
     );
-  
-    //return this.jsonDataList.map(fileName => this.http.get(JSON_PATH + fileName + JSON_EXTENSION));
   }
   
   public loadDataIntoLocalStorage(jsonData$: Observable<any[]>) {    
     return zip(from(this.jsonDataList), jsonData$).pipe(
-      map(([fileName, fileContent]) => localStorage.setItem(APP_PREFIX + fileName, JSON.stringify(fileContent))),
+     map(([fileName, fileContent]) => localStorage.setItem(APP_PREFIX + fileName, JSON.stringify(fileContent))),
       toArray(), // To have only 1 emition
       tap(x => localStorage.setItem('book-catalog', '')),
+      tap(x => this.printAll()),
       catchError(error => { console.log(error); return throwError(error)})
     );
   }

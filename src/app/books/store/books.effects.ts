@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
-import { catchError, map, switchMap, tap } from 'rxjs/operators';
+import { catchError, map, switchMap, tap, withLatestFrom } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { LoadBooksFailure, LoadBooksSuccess, BookActionTypes, BooksActions, UpdateBookSuccess, UpdateBookFailure, DeleteBookSuccess, DeleteBookFailure } from './books.actions';
 import { BooksService } from '../../services/books.service';
 import { Update } from '@ngrx/entity';
 import { Book } from '../books.model';
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 import { AppState } from 'src/app/reducers';
+import { selectLocalStorageIsInit } from 'src/app/local-storage/local-storage.selectors';
 
 @Injectable()
 export class BooksEffects {
@@ -19,13 +20,16 @@ export class BooksEffects {
   @Effect()
   loadBooks$ = this.actions$.pipe(
     ofType(BookActionTypes.LoadBooks),
-    switchMap(() => this.booksService.getAllBooks()
-      .pipe(
-        tap(data =>   console.log(data)),
-        map(books => new LoadBooksSuccess({data: books})),
-        catchError(error => of(new LoadBooksFailure(error))),
-      ),
-    ),
+    withLatestFrom(this.store.pipe(select(selectLocalStorageIsInit))),
+    switchMap(([action, isInit]) => {
+      if(isInit) {
+        return this.booksService.getAllBooks().pipe(
+          tap(data =>   console.log(data)),
+          map(books => new LoadBooksSuccess({data: books})),
+          catchError(error => of(new LoadBooksFailure(error))),
+        )
+      } else { return of(null) }
+    })
   );
 
   @Effect()

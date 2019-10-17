@@ -3,7 +3,7 @@ import { BehaviorSubject, combineLatest, Observable } from 'rxjs';
 import { Book } from '../books.model';
 import { Store, select } from '@ngrx/store';
 import { selectBooksArray, selectCurrentBook,
-         selectUrlBookIdExists, selectUrlBookEdit, selectAreBooksSaving } from '../store/books.selectors';
+         selectUrlBookIdExists, selectUrlBookEdit, selectBooksLoading } from '../store/books.selectors';
 import { selectLocalStorageIsInit } from 'src/app/local-storage/local-storage.selectors';
 import { LoadBooks, UpdateBook, DeleteBook } from '../store/books.actions';
 import { AppState } from '../../reducers/index';
@@ -23,6 +23,8 @@ export class BooksContainerComponent implements OnInit {
   isBookSelected$: Observable<any> = this.store.pipe(select(selectUrlBookIdExists));
   isBookBeingEdited$: Observable<any> = this.store.pipe(select(selectUrlBookEdit));
   currentBook$: Observable<Book> = this.store.pipe(select(selectCurrentBook));
+  isLoading$: Observable<boolean> = this.store.pipe(select(selectBooksLoading));
+  isInit$: Observable<boolean> = this.store.pipe(select(selectLocalStorageIsInit));
 
   constructor(public store: Store<AppState>) { }
 
@@ -46,19 +48,12 @@ export class BooksContainerComponent implements OnInit {
 
 
   onBookUpdate(book: Book) {
-    var savingMessage = document.getElementById('saving');
-    savingMessage.innerText = 'saving';
-
     const bookUpdate: Update<Book> = {
       id: book.id,
       changes: book
     };
 
     this.store.dispatch(new UpdateBook({book: bookUpdate}));
-    this.store.pipe(select(selectAreBooksSaving)).subscribe(data => {
-      savingMessage.innerText = 'saving done';
-    })
-    
   }
 
   onBookDelete(id: string) {
