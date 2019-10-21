@@ -6,6 +6,7 @@
     <div *ngIf="!(newBookBeingAdded$ | async); then thenDisplayList else elseDisplayEmptyForm"></div>
     <!-- List of books -->
     <ng-template #thenDisplayList>
+      <div class="add-circle"><i class="material-icons" (click)="addNew($event)">add_circle</i></div>
       <div *ngFor="let book of books$ | async">
         <mat-card class="list-item" [routerLink]="book.id">{{ book.title }}</mat-card>
       </div>

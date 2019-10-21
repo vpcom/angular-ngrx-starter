@@ -60,4 +60,8 @@ export class BooksContainerComponent implements OnInit {
     this.store.dispatch(new DeleteBook({id: id}));
   }
 
+  addNew(event) {
+    console.log(event);
+  }
+
 }
