@@ -1,21 +1,37 @@
 
-<!-- List of books -->
-<div  *ngIf="!(isBookSelected$ | async)">
-  <div *ngFor="let book of books$ | async">
-    <mat-card class="list-item" [routerLink]="book.id">{{ book.title }}</mat-card>
-  </div>
-</div>
+<div  *ngIf="!(isLoading$ | async) && (isInit$ | async)">
 
-<div *ngIf="(isBookSelected$ | async) && !(isLoading$ | async) && (isInit$ | async)">
-  <!-- A book's details -->
-  <app-book-details *ngIf="!(isBookBeingEdited$ | async)"
-    [book]="currentBook$ | async">
-  </app-book-details>
+  <div *ngIf="!(isBookSelected$ | async); then thenDisplayListOrAddNew else elseDisplayBookOrEdit"></div>
+  <ng-template #thenDisplayListOrAddNew>
+    <div *ngIf="!(newBookBeingAdded$ | async); then thenDisplayList else elseDisplayEmptyForm"></div>
+    <!-- List of books -->
+    <ng-template #thenDisplayList>
+      <div *ngFor="let book of books$ | async">
+        <mat-card class="list-item" [routerLink]="book.id">{{ book.title }}</mat-card>
+      </div>
+    </ng-template>
 
-  <!-- Form to edit a book -->
-  <app-book-form *ngIf="isBookBeingEdited$ | async"
-    [book]="currentBook$ | async"
-    (updatedBook)="onBookUpdate($event)"
-    (deletedBook)="onBookDelete($event)">
-  </app-book-form>
-</div>
+    <!-- Empty form for adding -->
+    <ng-template #elseDisplayEmptyForm>
+      Empty form
+    </ng-template>
+  </ng-template>
+
+  <ng-template #elseDisplayBookOrEdit>
+    <div *ngIf="!(isBookBeingEdited$ | async); then thenDisplayInfo else elseDisplayEditForm"></div>
+    <!-- A book's details -->
+    <ng-template #thenDisplayInfo>
+      <app-book-details
+        [book]="currentBook$ | async">
+      </app-book-details>
+    </ng-template>
+
+    <!-- Form to edit a book -->
+    <ng-template #elseDisplayEditForm>
+      <app-book-form
+        [book]="currentBook$ | async"
+        (updatedBook)="onBookUpdate($event)"
+        (deletedBook)="onBookDelete($event)">
+      </app-book-form>
+    </ng-template>  
+  </ng-template>
